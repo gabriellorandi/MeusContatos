@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30px"
+    android:gravity="center_horizontal"
+    tools:context="gov.ifsp.lorandi.pdm.meuscontatos.view.SingInActivity">
+
+    <EditText
+        android:id="@+id/emailTexto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/senhaTexto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/senha"
+        android:layout_marginBottom="10dp"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:gravity="center"
+        android:text="@string/recuperar_senha"
+        android:layout_marginBottom="30dp"
+        android:onClick="recuperar" />
+
+    <Button
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@color/colorAccent"
+    android:onClick="login"
+    android:text="@string/entrar"
+    android:textSize="20dp" />
+
+    <Button
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:onClick="registrar"
+        android:background="@color/colorAccent"
+        android:textSize="20dp"
+        android:text="@string/registrar" />
+
+
+
+
+</LinearLayout>

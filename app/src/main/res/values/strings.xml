@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Meus Contatos</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="recuperar_senha">Recuperar Senha</string>
+    <string name="entrar">Entrar</string>
+    <string name="nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="registrar">Registrar</string>
+    <string name="enviar">Enviar</string>
+    <string name="repita_senha">Repetir senha</string>
+    <string name="adicionar_contatos">Adicionar Contatos</string>
+    <string name="salvar">Salvar</string>
+</resources>
