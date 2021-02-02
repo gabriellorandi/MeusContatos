@@ -8,7 +8,7 @@
     <string name="telefone">Telefone</string>
     <string name="registrar">Registrar</string>
     <string name="enviar">Enviar</string>
-    <string name="repita_senha">Repetir senha</string>
+    <string name="repita_senha">Digite novamente sua senha</string>
     <string name="adicionar_contatos">Adicionar Contatos</string>
     <string name="salvar">Salvar</string>
 </resources>
