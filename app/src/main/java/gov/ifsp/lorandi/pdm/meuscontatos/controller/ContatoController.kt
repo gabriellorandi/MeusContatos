@@ -4,6 +4,7 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+
 import gov.ifsp.lorandi.pdm.meuscontatos.dao.Auth
 import gov.ifsp.lorandi.pdm.meuscontatos.view.MainActivity
 class ContatoController : AppCompatActivity() {
@@ -18,6 +19,7 @@ class ContatoController : AppCompatActivity() {
                 Toast.makeText(this, "Erro ao logar!", Toast.LENGTH_SHORT).show()
             }
 
+        finish()
     }
 
     fun signUp(email: String, password: String) {
@@ -29,6 +31,8 @@ class ContatoController : AppCompatActivity() {
                     Toast.makeText(this, "Erro ao registrar", Toast.LENGTH_SHORT).show()
                 }
             }
+        
+         finish()
     }
 
     fun recuperar(email: String) {
@@ -37,5 +41,4 @@ class ContatoController : AppCompatActivity() {
 
         finish()
     }
-
 }
