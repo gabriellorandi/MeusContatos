@@ -1,12 +1,9 @@
 package gov.ifsp.lorandi.pdm.meuscontatos.controller
 
-import android.content.Intent
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import gov.ifsp.lorandi.pdm.meuscontatos.dao.ContatoFirebase
 import gov.ifsp.lorandi.pdm.meuscontatos.model.Contato
 
-import gov.ifsp.lorandi.pdm.meuscontatos.view.MainActivity
 open class ContatoController : AppCompatActivity() {
 
     val contatoDao: ContatoFirebase
