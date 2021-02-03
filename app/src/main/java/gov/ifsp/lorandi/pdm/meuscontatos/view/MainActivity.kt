@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import gov.ifsp.lorandi.pdm.meuscontatos.R
 import gov.ifsp.lorandi.pdm.meuscontatos.adapter.ContatoAdapter
 import gov.ifsp.lorandi.pdm.meuscontatos.adapter.OnContatoClickListener
-import gov.ifsp.lorandi.pdm.meuscontatos.dao.ContactDAO
+import gov.ifsp.lorandi.pdm.meuscontatos.controller.ContatoController
 import gov.ifsp.lorandi.pdm.meuscontatos.databinding.ActivityMainBinding
 import gov.ifsp.lorandi.pdm.meuscontatos.model.Contato
-import gov.ifsp.lorandi.pdm.meuscontatos.service.ContatoService
 import gov.ifsp.lorandi.pdm.meuscontatos.view.MainActivity.Extras.EXTRA_CONTACT
 import gov.ifsp.lorandi.pdm.meuscontatos.view.MainActivity.Extras.VIEW_CONTACT_ACTION
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity(), OnContatoClickListener {
 
     private lateinit var activityMainBinding: ActivityMainBinding
 
-    private lateinit var contactDAO: ContactDAO
+    private lateinit var contatoController: ContatoController
     private lateinit var contatoList: MutableList<Contato>
 
     private lateinit var contatoAdapter: ContatoAdapter
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity(), OnContatoClickListener {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        contactDAO = ContatoService()
+        contatoController = ContatoController()
 
         contatoList = mutableListOf()
 
@@ -77,7 +76,7 @@ class MainActivity : AppCompatActivity(), OnContatoClickListener {
             val activity = activityReference.get()
             if (activity == null || activity.isFinishing) return mutableListOf()
 
-            return activity.contactDAO.getAll()
+            return activity.contatoController.buscaContatos()
         }
 
         override fun onPostExecute(result: List<Contato>?) {
@@ -115,20 +114,20 @@ class MainActivity : AppCompatActivity(), OnContatoClickListener {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == NEW_CONTACT_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            val newContact = data.getParcelableExtra<Contato>(EXTRA_CONTACT)
-            if (newContact != null) {
-                contactDAO.save(newContact)
+            val novoContato = data.getParcelableExtra<Contato>(EXTRA_CONTACT)
+            if (novoContato != null) {
+                contatoController.insereContato(novoContato)
 
-                contatoList.add(newContact)
+                contatoList.add(novoContato)
                 contatoAdapter.notifyDataSetChanged()
             }
         } else {
             if (requestCode == EDIT_CONTACT_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-                val editedContato: Contato? = data.getParcelableExtra(EXTRA_CONTACT)
-                if (editedContato != null) {
-                    contactDAO.update(editedContato)
+                val atualizarContato: Contato? = data.getParcelableExtra(EXTRA_CONTACT)
+                if (atualizarContato != null) {
+                    contatoController.atualizaContato(atualizarContato)
 
-                    contatoList[contatoList.indexOfFirst { it.nome.equals(editedContato.nome) }] = editedContato
+                    contatoList[contatoList.indexOfFirst { it.nome.equals(atualizarContato.nome) }] = atualizarContato
                     contatoAdapter.notifyDataSetChanged()
                 }
             }
@@ -146,18 +145,18 @@ class MainActivity : AppCompatActivity(), OnContatoClickListener {
     }
 
     override fun onEditMenuItem(position: Int) {
-        val selectedContato: Contato = contatoList[position]
+        val contato: Contato = contatoList[position]
 
         val editContactIntent = Intent(this, ContatoActivity::class.java)
-        editContactIntent.putExtra(EXTRA_CONTACT, selectedContato)
+        editContactIntent.putExtra(EXTRA_CONTACT, contato)
         startActivityForResult(editContactIntent, EDIT_CONTACT_REQUEST_CODE)
     }
 
     override fun onRemoveMenuItem(position: Int) {
-        val selectedContato: Contato = contatoList[position]
+        val contato: Contato = contatoList[position]
 
         if (position != -1) {
-            contactDAO.delete(selectedContato.nome)
+            contatoController.removeContato(contato.nome)
             contatoList.removeAt(position)
             contatoAdapter.notifyDataSetChanged()
         }

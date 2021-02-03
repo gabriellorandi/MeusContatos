@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import gov.ifsp.lorandi.pdm.meuscontatos.controller.ContatoController
+import gov.ifsp.lorandi.pdm.meuscontatos.controller.UsuarioController
 import gov.ifsp.lorandi.pdm.meuscontatos.databinding.ActivityLoginBinding
 
 const val TAMANHA_MIN_SENHA = 8
@@ -15,7 +16,7 @@ class SingInActivity : AppCompatActivity() {
 
     private lateinit var activitySingInBinding: ActivityLoginBinding
 
-    private lateinit var contatoController: ContatoController
+    private lateinit var usuarioController: UsuarioController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,7 @@ class SingInActivity : AppCompatActivity() {
         }
 
 
-        contatoController.signIn(email,password)
+        usuarioController.signIn(email,password)
 
     }
 

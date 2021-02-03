@@ -5,13 +5,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import gov.ifsp.lorandi.pdm.meuscontatos.controller.ContatoController
+import gov.ifsp.lorandi.pdm.meuscontatos.controller.UsuarioController
 import gov.ifsp.lorandi.pdm.meuscontatos.databinding.ActivityRecuperarSenhaBinding
 
 class RecuperaSenhaActivity : AppCompatActivity() {
 
     private lateinit var activityForgetPasswordBinding: ActivityRecuperarSenhaBinding
 
-    private lateinit var contatoController: ContatoController
+    private lateinit var usuarioController: UsuarioController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,7 @@ class RecuperaSenhaActivity : AppCompatActivity() {
         }
 
 
-        contatoController.recuperar(email)
+        usuarioController.recuperar(email)
 
     }
 

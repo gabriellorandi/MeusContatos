@@ -5,14 +5,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import gov.ifsp.lorandi.pdm.meuscontatos.controller.ContatoController
+import gov.ifsp.lorandi.pdm.meuscontatos.controller.UsuarioController
 import gov.ifsp.lorandi.pdm.meuscontatos.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var activitySignUpBinding: ActivitySignUpBinding
 
-    private lateinit var contatoController: ContatoController
-
+    private lateinit var usuarioController: UsuarioController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity() {
             return
         }
 
-        contatoController.signUp(email,password)
+        usuarioController.signUp(email,password)
 
 
     }
